@@ -148,7 +148,19 @@
     <input type="number" id="userGuess" min="0" max="20" value="0">
 
     <label for="computerGuess">What do you think the computer's guess is?</label>
-    <input type="number" id="computerGuess" min="0" max="20" value="0">
+    <select id="computerGuess">
+      <option value="0">0</option>
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5">5</option>
+      <option value="6">6</option>
+      <option value="7">7</option>
+      <option value="8">8</option>
+      <option value="9">9</option>
+      <option value="10">10</option>
+    </select>
 
     <button onclick="startGame()">Start Game</button>
 
@@ -161,7 +173,7 @@
       const userGuess = parseInt(document.getElementById('userGuess').value);
       const computerGuess = parseInt(document.getElementById('computerGuess').value);
 
-      // Random computer deposit and guess
+      // Random computer deposit
       const computerDeposit = Math.floor(Math.random() * 11);  // 0 to 10
       const totalDeposited = userDeposit + computerDeposit;
 
@@ -171,9 +183,9 @@
 
       let winnerMessage = "It's a tie!";
       if (userGuessDifference < computerGuessDifference) {
-        winnerMessage = "You win!";
+        winnerMessage = `${document.getElementById('userName').textContent}, you win! 🎉`;
       } else if (computerGuessDifference < userGuessDifference) {
-        winnerMessage = "Computer wins!";
+        winnerMessage = "Computer wins! 😞";
       }
 
       document.getElementById('result').innerHTML = `
@@ -182,7 +194,7 @@
         <p>Total deposited: <span class="total-deposited">${totalDeposited}</span></p>
         <p>Your guess: <span class="bold">${userGuess}</span></p>
         <p>Computer's guess: <span class="bold">${computerGuess}</span></p>
-        <p>${winnerMessage}</p>
+        <p><span class="bold" style="font-size: 1.5rem; color: ${userGuessDifference < computerGuessDifference ? '#28a745' : '#dc3545'}">${winnerMessage}</span></p>
       `;
     }
 
