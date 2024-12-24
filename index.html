@@ -208,10 +208,9 @@
       </div>
 
       <p><button onclick="startGame()">Start Game</button></p>
+      <div id="result" class="result"></div>
     </div>
   </div>
-
-  <div id="result" class="result"></div>
 
   <script>
     function startGame() {
@@ -227,7 +226,7 @@
       const computerGuess = Math.floor(Math.random() * 21); // Computer random guess for total (0 to 20)
       const computerGuessDifference = Math.abs(computerGuess - totalDeposited);
 
-      let winnerMessage = "It's a tie!";
+      let winnerMessage = "It's a tie! 😱";
       if (userGuessDifference < computerGuessDifference) {
         winnerMessage = `${document.getElementById('userName').textContent}, you win! 🎉`;
       } else if (computerGuessDifference < userGuessDifference) {
@@ -246,8 +245,8 @@
     const userName = prompt("Enter your name:");
     if (userName) {
       document.getElementById('userName').textContent = userName;
-      document.getElementById('userDepositLabel').textContent = `How many gold pouches will you deposit?`;
-      document.getElementById('userGuessLabel').textContent = `What is your guess for the total deposited?`;
+      document.getElementById('userDepositLabel').textContent = `Gold pouches you deposit...`;
+      document.getElementById('userGuessLabel').textContent = `Guess the total deposited...`;
     }
   </script>
 </body>
