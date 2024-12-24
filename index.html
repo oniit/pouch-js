@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gold Pouch Game</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #f0f0f0;
+      margin: 0;
+    }
+    h1 {
+      margin-bottom: 20px;
+    }
+    select, button {
+      margin: 10px;
+      padding: 10px;
+      font-size: 16px;
+    }
+    .game-info {
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Gold Pouch Game</h1>
+  <div>
+    <label for="user-gold">How many gold pouch to deposit?</label>
+    <select id="user-gold"></select>
+  </div>
+  <div>
+    <label for="user-guess">Your guess for the total?</label>
+    <select id="user-guess"></select>
+  </div>
+  <button onclick="startGame()">Start Game</button>
+  <div class="game-info" id="game-info"></div>
+
+  <script>
+    // Function to generate options dynamically
+    function generateOptions(selectId, min, max) {
+      const selectElement = document.getElementById(selectId);
+      for (let i = min; i <= max; i++) {
+        const option = document.createElement("option");
+        option.value = i;
+        option.textContent = i;
+        selectElement.appendChild(option);
+      }
+    }
+
+    // Generate options for user gold and user guess
+    generateOptions('user-gold', 0, 10);
+    generateOptions('user-guess', 0, 20);
+
+    function startGame() {
+      // Get user inputs
+      const userGold = parseInt(document.getElementById('user-gold').value);
+      const userGuess = parseInt(document.getElementById('user-guess').value);
+      
+      // Komputer setoran dan tebakan
+      const computerGold = Math.floor(Math.random() * 11);  // random 0 to 10
+      const computerGuess = Math.floor(Math.random() * 21); // random 0 to 20
+
+      // Total setoran
+      const totalGold = userGold + computerGold;
+
+      // Hitung selisih tebakan
+      const userDifference = Math.abs(userGuess - totalGold);
+      const computerDifference = Math.abs(computerGuess - totalGold);
+
+      // Tentukan pemenangnya
+      let winner = '';
+      if (userDifference < computerDifference) {
+        winner = 'You win!';
+      } else if (userDifference > computerDifference) {
+        winner = 'Computer wins!';
+      } else {
+        winner = 'It\'s a tie!';
+      }
+
+      // Tampilkan hasil game
+      document.getElementById('game-info').innerHTML = `
+        <p>You deposited ${userGold} pouch and guessed ${userGuess}.</p>
+        <p>Computer deposited ${computerGold} pouch and guessed ${computerGuess}.</p>
+        <p>Total deposited: ${totalGold}</p>
+        <p>Your difference: ${userDifference}</p>
+        <p>Computer's difference: ${computerDifference}</p>
+        <h2>${winner}</h2>
+      `;
+    }
+  </script>
+</body>
+</html>
