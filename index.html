@@ -108,6 +108,25 @@
     .form-group label {
       margin-right: 10px;
     }
+
+    /* Hide Result by default */
+    #result {
+      display: none;
+    }
+
+    /* Message Styles */
+    .winner {
+      color: #28a745;
+    }
+
+    .loser {
+      color: #dc3545;
+    }
+
+    .tie {
+      color: #6c757d;
+    }
+
   </style>
 </head>
 <body>
@@ -115,6 +134,8 @@
     <div class="game-container">
       <h1>Gold Pouch Game</h1>
       <p class="description">A fun game where you and the computer will deposit gold pouches and guess the total combined amount. The one with the closest guess wins!</p>
+      <p id="welcomeMessage">Welcome! Let's start the game!</p>
+
       <div class="form-group">
         <label for="userDeposit" id="userDepositLabel">How many gold pouches will you deposit?</label>
         <select id="userDeposit">
@@ -163,9 +184,26 @@
     </div>
   </div>
 
-  <div id="result" class="result"></div>
+  <div id="result" class="result">
+    <div class="game-container">
+      <p id="resultMessage"></p>
+      <p><span class="bold">Your Deposit: </span><span id="userDepositAmount"></span></p>
+      <p><span class="bold">Computer's Deposit: </span><span id="computerDepositAmount"></span></p>
+      <p><span class="bold">Total Deposited: </span><span id="totalDepositedAmount" class="total-deposited"></span></p>
+      <p><span class="bold">Your Guess: </span><span id="userGuessAmount"></span></p>
+      <p><span class="bold">Computer's Guess: </span><span id="computerGuessAmount"></span></p>
+    </div>
+  </div>
 
   <script>
+    // Handle user input for name
+    const userName = prompt("Enter your name:");
+    if (userName) {
+      document.getElementById('welcomeMessage').textContent = `Welcome, ${userName}! Let's start the game!`;
+      document.getElementById('userDepositLabel').textContent = `How many gold pouches will ${userName} deposit?`;
+      document.getElementById('userGuessLabel').textContent = `What is ${userName}'s guess for the total deposited?`;
+    }
+
     function startGame() {
       const userDeposit = parseInt(document.getElementById('userDeposit').value);
       const userGuess = parseInt(document.getElementById('userGuess').value);
@@ -180,28 +218,24 @@
       const computerGuessDifference = Math.abs(computerGuess - totalDeposited);
 
       let winnerMessage = "It's a tie!";
+      let winnerClass = "tie";
       if (userGuessDifference < computerGuessDifference) {
-        winnerMessage = `${document.getElementById('userName').textContent}, you win! 🎉`;
+        winnerMessage = `${userName}, you win! 🎉`;
+        winnerClass = "winner";
       } else if (computerGuessDifference < userGuessDifference) {
         winnerMessage = "Computer wins! 😞";
+        winnerClass = "loser";
       }
 
-      document.getElementById('result').innerHTML = `
-        <div class="game-container">
-          <p><span class="bold">${document.getElementById('userName').textContent}'s</span> deposit: <span class="bold">${userDeposit}</span> | Computer's deposit: <span class="bold">${computerDeposit}</span></p>
-          <p>Total deposited: <span class="total-deposited">${totalDeposited}</span></p>
-          <p><span class="bold">${document.getElementById('userName').textContent}'s</span> guess: <span class="bold">${userGuess}</span> | Computer's guess: <span class="bold">${computerGuess}</span></p>
-          <p><span class="bold" style="font-size: 1.5rem; color: ${userGuessDifference < computerGuessDifference ? '#28a745' : (computerGuessDifference < userGuessDifference ? '#dc3545' : '#6c757d')}">${winnerMessage}</span></p>
-        </div>
-      `;
-    }
-
-    // Handle user input for name
-    const userName = prompt("Enter your name:");
-    if (userName) {
-      document.getElementById('userName').textContent = userName;
-      document.getElementById('userDepositLabel').textContent = `How many gold pouches will ${userName} deposit?`;
-      document.getElementById('userGuessLabel').textContent = `What is ${userName}'s guess for the total deposited?`;
+      // Display result
+      document.getElementById('result').style.display = 'block';
+      document.getElementById('resultMessage').textContent = winnerMessage;
+      document.getElementById('resultMessage').className = winnerClass;
+      document.getElementById('userDepositAmount').textContent = userDeposit;
+      document.getElementById('computerDepositAmount').textContent = computerDeposit;
+      document.getElementById('totalDepositedAmount').textContent = totalDeposited;
+      document.getElementById('userGuessAmount').textContent = userGuess;
+      document.getElementById('computerGuessAmount').textContent = computerGuess;
     }
   </script>
 </body>
