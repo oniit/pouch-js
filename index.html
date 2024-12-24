@@ -6,39 +6,111 @@
   <title>Gold Pouch Game</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
+      font-family: 'Arial', sans-serif;
+      background-color: #f9f9f9;
+      margin: 0;
+      padding: 0;
       display: flex;
       flex-direction: column;
-      justify-content: center;
       align-items: center;
+      justify-content: center;
       height: 100vh;
-      background-color: #f0f0f0;
-      margin: 0;
     }
+
     h1 {
+      color: #333;
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+    }
+
+    .description {
+      font-size: 1.2rem;
+      color: #555;
+      text-align: center;
+      max-width: 600px;
       margin-bottom: 20px;
     }
+
     select, button {
-      margin: 10px;
-      padding: 10px;
-      font-size: 16px;
+      padding: 12px 20px;
+      font-size: 1.1rem;
+      border-radius: 5px;
+      border: 2px solid #ccc;
+      background-color: #fff;
+      margin: 10px 0;
+      cursor: pointer;
+      transition: all 0.3s ease;
     }
+
+    select:focus, button:focus {
+      outline: none;
+      border-color: #007BFF;
+    }
+
+    button {
+      background-color: #007BFF;
+      color: #fff;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
     .game-info {
+      font-size: 1.1rem;
+      color: #333;
       margin-top: 20px;
+      background-color: #f1f1f1;
+      padding: 15px;
+      border-radius: 10px;
+      width: 80%;
+      max-width: 600px;
+    }
+
+    .game-info h2 {
+      color: #28a745;
+    }
+
+    .game-info p {
+      margin: 5px 0;
+    }
+
+    label {
+      font-size: 1.1rem;
+      margin-bottom: 10px;
+      color: #333;
+    }
+
+    .bold {
+      font-weight: bold;
+    }
+
+    .total-deposited {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #007BFF;
     }
   </style>
 </head>
 <body>
+
   <h1>Gold Pouch Game</h1>
+  <div class="description">
+    <p>Welcome to the Gold Pouch Game! In this game, you and the computer will each start with 10 gold pouches. You will decide how many pouches to deposit, and also guess the total amount of gold pouches that will be deposited by both of you. The winner will be the one whose guess is closest to the actual total! Let’s see if you can outsmart the computer!</p>
+  </div>
+
   <div>
     <label for="user-gold">How many gold pouch to deposit?</label>
     <select id="user-gold"></select>
   </div>
+
   <div>
     <label for="user-guess">Your guess for the total?</label>
     <select id="user-guess"></select>
   </div>
+
   <button onclick="startGame()">Start Game</button>
+
   <div class="game-info" id="game-info"></div>
 
   <script>
@@ -85,14 +157,15 @@
 
       // Tampilkan hasil game
       document.getElementById('game-info').innerHTML = `
-        <p>You deposited ${userGold} pouch and guessed ${userGuess}.</p>
-        <p>Computer deposited ${computerGold} pouch and guessed ${computerGuess}.</p>
-        <p>Total deposited: ${totalGold}</p>
-        <p>Your difference: ${userDifference}</p>
-        <p>Computer's difference: ${computerDifference}</p>
+        <p>You deposited <span class="bold">${userGold}</span> pouch and guessed <span class="bold">${userGuess}</span>.</p>
+        <p>Computer deposited <span class="bold">${computerGold}</span> pouch and guessed <span class="bold">${computerGuess}</span>.</p>
+        <p class="total-deposited">Total deposited: <span class="bold">${totalGold}</span></p>
+        <p>Your difference: <span class="bold">${userDifference}</span></p>
+        <p>Computer's difference: <span class="bold">${computerDifference}</span></p>
         <h2>${winner}</h2>
       `;
     }
   </script>
+
 </body>
 </html>
