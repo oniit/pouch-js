@@ -209,6 +209,7 @@
 
       <p><button onclick="startGame()">Start Game</button></p>
     </div>
+    <div id="result" class="game-info"></div>
   </div>
 
   <div id="result" class="result"></div>
@@ -246,8 +247,8 @@
     const userName = prompt("Enter your name:");
     if (userName) {
       document.getElementById('userName').textContent = userName;
-      document.getElementById('userDepositLabel').textContent = `How many gold pouches will ${userName} deposit?`;
-      document.getElementById('userGuessLabel').textContent = `What is ${userName}'s guess for the total deposited?`;
+      document.getElementById('userDepositLabel').textContent = `How many gold pouches will you deposit?`;
+      document.getElementById('userGuessLabel').textContent = `What is your guess for the total deposited?`;
     }
   </script>
 </body>
