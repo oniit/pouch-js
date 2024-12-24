@@ -19,6 +19,16 @@
       text-align: center;
     }
 
+    .game-container {
+      background-color: #fff;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+      width: 90%;
+      max-width: 600px;
+      text-align: center;
+    }
+
     h1 {
       color: #333;
       font-size: 2.5rem;
@@ -66,35 +76,6 @@
       transform: scale(1);
     }
 
-    /* Game Info Card */
-    .game-info {
-      font-size: 1.1rem;
-      color: #333;
-      margin-top: 20px;
-      background-color: #fff;
-      padding: 20px;
-      border-radius: 15px;
-      width: 80%;
-      max-width: 600px;
-      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-      transition: transform 0.3s ease;
-    }
-
-    .game-info:hover {
-      transform: scale(1.05);
-    }
-
-    .game-info h2 {
-      color: #28a745;
-      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
-      animation: fadeIn 1.5s ease-out;
-    }
-
-    /* Bold Styling */
-    .bold {
-      font-weight: bold;
-    }
-
     /* Total Deposited Style */
     .total-deposited {
       font-size: 1.5rem;
@@ -102,38 +83,11 @@
       color: #007BFF;
     }
 
-    /* FadeIn Animation */
-    @keyframes fadeIn {
-      0% {
-        opacity: 0;
-        transform: translateY(10px);
-      }
-      100% {
-        opacity: 1;
-        transform: translateY(0);
-      }
+    /* Bold Styling */
+    .bold {
+      font-weight: bold;
     }
 
-    /* Custom Select Styling */
-    select {
-      font-size: 1.2rem;
-      padding: 10px;
-      border-radius: 8px;
-      border: 1px solid #ccc;
-      background-color: #f9f9f9;
-      transition: all 0.3s ease;
-    }
-
-    select:hover {
-      background-color: #e0f7fa;
-    }
-
-    select:focus {
-      outline: none;
-      border-color: #007BFF;
-      background-color: #ffffff;
-    }
-    
     /* Center Content */
     .center-content {
       text-align: center;
@@ -158,11 +112,9 @@
 </head>
 <body>
   <div class="center-content">
-    <div class="game-info">
-      <h2>Welcome, <span class="bold" id="userName">Player</span>! Let's start the game!</h2>
-
+    <div class="game-container">
+      <h1>Gold Pouch Game</h1>
       <p class="description">A fun game where you and the computer will deposit gold pouches and guess the total combined amount. The one with the closest guess wins!</p>
-
       <div class="form-group">
         <label for="userDeposit" id="userDepositLabel">How many gold pouches will you deposit?</label>
         <select id="userDeposit">
@@ -235,12 +187,12 @@
       }
 
       document.getElementById('result').innerHTML = `
-        <p><span class="bold">${document.getElementById('userName').textContent}'s</span> deposit: <span class="bold">${userDeposit}</span></p>
-        <p>Computer's deposit: <span class="bold">${computerDeposit}</span></p>
-        <p>Total deposited: <span class="total-deposited">${totalDeposited}</span></p>
-        <p><span class="bold">${document.getElementById('userName').textContent}'s</span> guess: <span class="bold">${userGuess}</span></p>
-        <p>Computer's guess: <span class="bold">${computerGuess}</span></p>
-        <p><span class="bold" style="font-size: 1.5rem; color: ${userGuessDifference < computerGuessDifference ? '#28a745' : (computerGuessDifference < userGuessDifference ? '#dc3545' : '#6c757d')}">${winnerMessage}</span></p>
+        <div class="game-container">
+          <p><span class="bold">${document.getElementById('userName').textContent}'s</span> deposit: <span class="bold">${userDeposit}</span> | Computer's deposit: <span class="bold">${computerDeposit}</span></p>
+          <p>Total deposited: <span class="total-deposited">${totalDeposited}</span></p>
+          <p><span class="bold">${document.getElementById('userName').textContent}'s</span> guess: <span class="bold">${userGuess}</span> | Computer's guess: <span class="bold">${computerGuess}</span></p>
+          <p><span class="bold" style="font-size: 1.5rem; color: ${userGuessDifference < computerGuessDifference ? '#28a745' : (computerGuessDifference < userGuessDifference ? '#dc3545' : '#6c757d')}">${winnerMessage}</span></p>
+        </div>
       `;
     }
 
