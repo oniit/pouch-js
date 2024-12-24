@@ -208,8 +208,11 @@
       </div>
 
       <p><button onclick="startGame()">Start Game</button></p>
+      <p id="result" class="game-info"></p>
     </div>
   </div>
+
+  <div id="result" class="result"></div>
 
   <script>
     function startGame() {
@@ -227,25 +230,25 @@
 
       let winnerMessage = "It's a tie!";
       if (userGuessDifference < computerGuessDifference) {
-        winnerMessage = `${document.getElementById('userName').textContent}, you win! 🎉`;
+        winnerMessage = ${document.getElementById('userName').textContent}, you win! 🎉;
       } else if (computerGuessDifference < userGuessDifference) {
         winnerMessage = "Computer wins! 😞";
       }
 
-      document.getElementById('result').innerHTML = `
+      document.getElementById('result').innerHTML = 
         <p><span class="bold">${document.getElementById('userName').textContent}'s</span> deposit: <span class="bold">${userDeposit}</span> | Computer's deposit: <span class="bold">${computerDeposit}</span></p>
         <p>Total deposited: <span class="total-deposited">${totalDeposited}</span></p>
         <p><span class="bold">${document.getElementById('userName').textContent}'s</span> guess: <span class="bold">${userGuess}</span> | Computer's guess: <span class="bold">${computerGuess}</span></p>
         <p><span class="bold" style="font-size: 1.5rem; color: ${userGuessDifference < computerGuessDifference ? '#28a745' : (computerGuessDifference < userGuessDifference ? '#dc3545' : '#6c757d')}">${winnerMessage}</span></p>
-      `;
+      ;
     }
 
     // Handle user input for name
     const userName = prompt("Enter your name:");
     if (userName) {
       document.getElementById('userName').textContent = userName;
-      document.getElementById('userDepositLabel').textContent = `How many gold pouches will you deposit?`;
-      document.getElementById('userGuessLabel').textContent = `What is your guess for the total deposited?`;
+      document.getElementById('userDepositLabel').textContent = How many gold pouches will you deposit?;
+      document.getElementById('userGuessLabel').textContent = What is your guess for the total deposited?;
     }
   </script>
 </body>
