@@ -16,6 +16,7 @@
       align-items: center;
       justify-content: center;
       height: 100vh;
+      text-align: center;
     }
 
     h1 {
@@ -141,35 +142,51 @@
   <div class="game-info">
     <h2>Welcome, <span class="bold" id="userName">Player</span>! Let's start the game!</h2>
 
-    <label for="userDeposit" id="userDepositLabel">How many gold pouches will you deposit?</label>
-    <input type="number" id="userDeposit" min="0" max="10" value="0">
+    <p><label for="userDeposit" id="userDepositLabel">How many gold pouches will you deposit?</label></p>
+    <p>
+      <select id="userDeposit">
+        <option value="0">0</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+        <option value="10">10</option>
+      </select>
+    </p>
 
-    <label for="userGuess" id="userGuessLabel">What is your guess for the total deposited?</label>
-    <select id="userGuess">
-      <option value="0">0</option>
-      <option value="1">1</option>
-      <option value="2">2</option>
-      <option value="3">3</option>
-      <option value="4">4</option>
-      <option value="5">5</option>
-      <option value="6">6</option>
-      <option value="7">7</option>
-      <option value="8">8</option>
-      <option value="9">9</option>
-      <option value="10">10</option>
-      <option value="11">11</option>
-      <option value="12">12</option>
-      <option value="13">13</option>
-      <option value="14">14</option>
-      <option value="15">15</option>
-      <option value="16">16</option>
-      <option value="17">17</option>
-      <option value="18">18</option>
-      <option value="19">19</option>
-      <option value="20">20</option>
-    </select>
+    <p><label for="userGuess" id="userGuessLabel">What is your guess for the total deposited?</label></p>
+    <p>
+      <select id="userGuess">
+        <option value="0">0</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+        <option value="10">10</option>
+        <option value="11">11</option>
+        <option value="12">12</option>
+        <option value="13">13</option>
+        <option value="14">14</option>
+        <option value="15">15</option>
+        <option value="16">16</option>
+        <option value="17">17</option>
+        <option value="18">18</option>
+        <option value="19">19</option>
+        <option value="20">20</option>
+      </select>
+    </p>
 
-    <button onclick="startGame()">Start Game</button>
+    <p><button onclick="startGame()">Start Game</button></p>
 
     <div id="result"></div>
   </div>
@@ -201,7 +218,7 @@
         <p>Total deposited: <span class="total-deposited">${totalDeposited}</span></p>
         <p><span class="bold">${document.getElementById('userName').textContent}'s</span> guess: <span class="bold">${userGuess}</span></p>
         <p>Computer's guess: <span class="bold">${computerGuess}</span></p>
-        <p><span class="bold" style="font-size: 1.5rem; color: ${userGuessDifference < computerGuessDifference ? '#28a745' : '#dc3545'}">${winnerMessage}</span></p>
+        <p><span class="bold" style="font-size: 1.5rem; color: ${userGuessDifference < computerGuessDifference ? '#28a745' : (computerGuessDifference < userGuessDifference ? '#dc3545' : '#6c757d')}">${winnerMessage}</span></p>
       `;
     }
 
